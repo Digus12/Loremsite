@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title><Lorem></Lorem></title>
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet"> 
+
+<style>
+@import "bourbon";
+
+$break-medium: 980px;
+$nav-width: 240px;
+$site-width: 1600px;
+
+
+p{
+display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+  
+  margin-inline-end: 0px;
+}
+html,
+body {
+
+  padding: 0;
+  background: lighten(#3a4043, 15%);
+  font-family: 'Anton', sans-serif;
+}
+
+.l-site {
+  margin: 0 auto;
+  max-width: $site-width;
+  position: relative;
+  z-index: 1;
+  
+  &:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    display: block;
+    background: #3a4043;
+    z-index: 1;
+  }
+}
+
+.l-page {
+  position: relative;
+  margin-left: $nav-width;
+  background: #fff;
+  z-index: 2;
+  box-shadow: 1px 0 25px rgba(0,0,0,0.25);
+  @include transition(0.35s);
+}
+
+.l-nav {
+  position: absolute;
+  width: $nav-width;
+  display: block;
+  background: #3a4043;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.band {
+  h1 {
+    margin: 0;
+    padding: 0 0 10px;
+    color: #fff;
+    font-size: 32px;
+  }
+  
+  p {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-size: 17px;
+  }
+}
+
+.band-container {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  min-height: 85vh;
+  max-width: 960px;
+  display: table;
+  position: relative;
+  padding: 0 3em;
+}
+
+.band-inner {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 3em 0 4em;
+}
+
+.band-a {
+  background: #69D2E7;
+}
+
+.band-b {
+  background: #F9D423;
+}
+
+.band-c {
+  background: #F38630;
+}
+
+.band-d {
+  background: #FF4E50;
+}
+
+.nav {
+  width: ($nav-width - 60);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 30px;
+  overflow: auto;
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  li {
+    margin: 0;
+    padding: 0;
+    @include transition(0.25s);
+  }
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 800;
+    display: block;
+    padding: 10px 0;
+  }
+  
+  .nav-primary {
+    opacity: 1;
+    
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  
+  .nav-secondary {
+    opacity: 0.4;
+    
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.menu {
+  display: none;
+  position: fixed;
+  top: 25px;
+  left: 1.5em;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 10;
+  
+  &:hover {
+    .menu-hamburger:before,
+    .menu-hamburger:after {
+      width: 24px;
+    }
+  }
+  
+  &.is-active {
+    .menu-hamburger {
+      background: none;
+    }
+    .menu-hamburger:before,
+    .menu-hamburger:after {
+      top: 0;
+      width: 24px;
+      -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+              transform: rotate(45deg);
+    }
+    .menu-hamburger:after {
+      -webkit-transform: rotate(-45deg);
+          -ms-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+    }
+    .menu-hamburger:hover {
+      -webkit-transform: scale(1.2);
+          -ms-transform: scale(1.2);
+              transform: scale(1.2);
+    }
+  }
+}
+
+.menu-hamburger {
+  position: relative;
+  width: 24px;
+  height: 4px;
+  margin: 10px 0;
+  background: #fff;
+  border-radius: 4px;
+  transition: all 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 4px;
+    background: #fff;
+    position: absolute;
+    border-radius: 4px;
+    transition: all 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  &:before {
+    top: -8px;
+    left: 0;
+    width: 22px;
+  }
+
+  &:after {
+    top: 8px;
+    width: 16px;
+    left: 0;
+  }
+}
+
+@media screen and (max-width: $break-medium) {
+  .menu {
+    display: block;
+  }
+  
+  .l-site {
+    &.is-open {
+      overflow: hidden;
+      
+      .l-page {
+        @include transform(translateX($nav-width));
+      }
+    }
+  }
+  
+  .l-page {
+    margin-left: 0;
+    z-index: 3;
+  }
+  
+  .l-nav {
+    z-index: 2;
+  }
+  
+  .band-container {
+    padding: 0 1.5em;
+  }
+}
+
+</style>
+  </head>
+  <body>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.sound.js"></script>
+        <script type="text/javascript" src="perlin.js"></script>
+        <section class="band band-a">
+                <div class="band-container">
+                  <div class="band-inner">
+                    <h1>Lorem ipsum dolor</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta, tellus ut convallis luctus, lorem diam mattis arcu, eu consequat dui tortor eget lacus. Donec metus ligula, rutrum volutpat neque vel, porta tincidunt dui. Phasellus convallis tristique nunc. Integer nunc nunc, finibus a maximus at, viverra ut lorem. Etiam id velit risus. Vestibulum sapien mauris, fermentum nec luctus nec, fringilla non orci. Nullam blandit porta tincidunt. Donec placerat pretium dapibus. Ut interdum lorem eu nibh tincidunt vulputate. Aenean aliquam gravida quam, vel pulvinar odio. Pellentesque sed feugiat ligula. Quisque sagittis porttitor dui, ac lacinia mauris tempor vel. Donec rutrum lorem id nulla consequat vulputate.</p>
+                  </div>
+                </div>
+              </section>
+              <section class="band band-b">
+                <div class="band-container">
+                  <div class="band-inner">
+                      <img class="img-line" src="DSCF3576.jpg" alt="Paris" width="300" height="300" style="float:left;margin:20px;">
+                    <h1>Proin sed aliquet</h1>
+                    <p>Лорем ипсум долор сит амет, аудире цорпора мнесарчум цум те. Ин цум дицо нибх витуперата. Лудус воцибус ех хас, веритус цотидиеяуе диссентиет ад ест, сеа цопиосае легендос ин. Ид еум ирацундиа урбанитас еффициенди. Ин цум постеа апериам тибияуе, еу про убияуе еяуидем ехплицари.
+
+                      Либер дефинитионес цу меа, ех пауло персецути пер, ребум иллуд вулпутате усу ан. Етиам хомеро еум ад, яуи ид сенсибус суавитате глориатур. Елитр видиссе цивибус ех яуо. Цасе риденс вис ад.
+                      
+                      Цум ат апериам тритани луптатум, хас омиттам витуператорибус еу. Ириуре цивибус цонсулату еа сеа, иус ех дицта хабемус елеифенд. Елит нолуиссе ан меи, бруте велит усу ат, сит патриояуе диссентиунт ат. Нам утинам дефинитионем ех. Чоро мнесарчум усу не, меис аппеллантур вис еи. Цонсулату молестиае ут иус, не зрил сингулис аргументум меи.
+                      
+                      Яуи миним еффициенди но, ад мел иудицо инцоррупте. Хис ан нибх латине фацилисис. Цум перципит хонестатис ин, при магна аугуе феугаит еу. Дуо еи юсто афферт, ириуре облияуе фацилисис меи еи. Веритус десерунт еи нам.
+                      
+                      Омиттантур тхеопхрастус вих ат, легере цорпора нец не. Ат примис интегре яуалисяуе нец, ех яуо харум форенсибус. Еос омнес репримияуе но, адхуц реяуе елитр цу вих. Новум иусто инимицус цу еум, ад хомеро утамур темпорибус меа.
+                      
+                      Еос ан прима либрис ментитум, но стет утамур вивендо меи. Но яуодси фацилисис сит. Не ипсум перципитур еам. Цу дуис нострум иус, дицат вениам вих те. Ет еам дицо вулпутате пхилосопхиа, еум ат лаудем яуаестио, ех ерант оратио яуи. Нец ет хабемус симилияуе, атяуи инструцтиор интерпретарис ад сит. Вих ид ессе яуидам денияуе, дуо ан суавитате цонсеяуат цомплецтитур, перфецто витуперата яуи еи.
+                      
+                      Агам цибо меа ех, вих еа анциллае оцурререт, те орнатус абхорреант усу. Тота тамяуам интерессет меи ид, дуис персеяуерис адверсариум ут еам. Солет тхеопхрастус цомпрехенсам ид яуо, не хис лаудем дигниссим, ест ин нихил аццусата антиопам. Еам ех ипсум дефиниебас сцрибентур, дицерет хендрерит продессет те меа, хис еа постеа инсоленс рецтеяуе.
+                      
+                      Еи легимус продессет адверсариум меи, хабео фацилисис не пер. Иллум персиус перципит ад при. Ут аугуе нумяуам еум. Солет еффициантур не при. Тимеам дефиниебас ид иус, мандамус салутанди еффициенди еа вим. Вел нисл иусто либрис ех, ех еум оратио глориатур, ан опортере еррорибус пер.
+                      
+                      Те прима малис делицата еос, еос ин тимеам апеириан сингулис, ан солеат бландит цонтентионес еос. Еи иус маиестатис витуператорибус, легере пондерум аццоммодаре ех хис. Дисцере инструцтиор цум ет, видиссе луптатум но сеа, усу ехерци опортеат принципес те. Цаусае елояуентиам еу при. Иудицо солута вих ид, ребум цивибус сенсибус еа хас, поссе еффициенди диспутандо еа усу.
+                      
+                      Вереар ратионибус при те. Яуо граеци перпетуа ратионибус еи, ест еа сале облияуе цотидиеяуе. Дуо унум ехпетендис еу, вим виде иллуд мазим ех. Ассум граеце иус ин, еу аудиам опортеат еос. Виде алтера феугаит меи ут. Но дисцере легендос хис.
+                      
+                      Ипсум сенсибус вих не. Нец тритани фацилис диспутатиони еу, веро нумяуам граецис ет вих, фацете волуптариа модератиус еам не. Виси яуаеяуе аццусата вих еа, хис тритани дебитис ид. Одио адхуц сит ат, еа хис сцрипторем пхилосопхиа. Меи фацер торяуатос ат, но еос волуптуа лобортис, ан амет плацерат ехпетенда цум.
+                      
+                      Пер агам вери ипсум не, сеа ин тантас вулпутате инструцтиор. Воцент тамяуам ассуеверит цу меа, хис фацер фацилисис ут. Нец еу номинати атоморум вулпутате, яуас сусципиантур яуо ан. Еос омиттантур либерависсе ет.
+                      
+                      Яуи цибо поссим цетерос ин, хас ат мунере еирмод. Меи еу натум интерессет, нам ид оратио форенсибус инцоррупте. Ан молестие рецтеяуе пер. Хас ат маиорум абхорреант.
+                      
+                      Не при еррем сенсерит. Вел дицо еррем молестиае ат, сед ут граеци ессент тхеопхрастус. Меа но яуидам видерер, вих ан зрил перципит. Бруте сенсерит мел ут, елаборарет цонсеяуунтур иус ет. Дицо иудицо нумяуам вел ин. Те сит цивибус сигниферумяуе. Мел аетерно дицерет рецусабо ин, симул фиерент витуперата но меи, ан пер велит ерант лобортис.
+                      
+                     
+                      ин яуем нонумы цум, ин яуис яуандо при. Ин утамур симилияуе вис, но сонет аццусата меи. Те пер яуидам нолуиссе, еи при цибо сенсибус модератиус. Те хинц долорум вел, цу дуо елеифенд цоррумпит. Меи еа алии иллуд.
+                      
+                     .</p>
+                   
+                  </div>
+                </div>
+              </section>
+              <section class="band band-c">
+                <div class="band-container">
+                  <div class="band-inner">
+                    <h1>Sed consectetur neque</h1>
+                    <p>Sed consectetur neque et libero placerat, dapibus laoreet sem condimentum. Nunc suscipit pharetra nunc ac interdum. Quisque justo magna, porttitor quis bibendum eu, ultrices nec justo. Cras mattis ut lectus at ullamcorper. Mauris vestibulum est sed sapien euismod, a pretium arcu lacinia. Donec pharetra non massa ac rhoncus. In in magna felis. Ut porta nec nunc a condimentum. Nullam ultricies sollicitudin enim ac scelerisque. Nam porta, leo in euismod suscipit, elit lorem eleifend neque, non hendrerit quam odio quis felis. Praesent id ullamcorper neque, in fermentum mauris. Curabitur sodales erat sed nisi dictum, sit amet vehicula eros malesuada.</p>
+                  </div>
+                </div>
+              </section>
+              <section class="band band-d">
+                <div class="band-container">
+                  <div class="band-inner">
+                    <h1>Nulla tempor laoreet</h1>
+                    <p>Nulla tempor laoreet sagittis. Donec molestie odio sit amet tincidunt egestas. Ut ut nisi nec felis vehicula pharetra. Nunc ullamcorper vitae lectus vitae consectetur. Quisque pharetra lorem metus, at lacinia magna malesuada non. Maecenas tristique risus quis massa convallis tempus in non turpis. Mauris pretium purus sed lacus euismod, eu cursus massa commodo. Nulla in erat ut ex imperdiet iaculis. Aliquam erat volutpat. Sed pellentesque et neque vitae accumsan. Etiam nec dolor quis est dignissim viverra. Nunc et pulvinar felis. Nulla in varius turpis. Curabitur non diam libero. Nam porttitor orci in metus sagittis</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+
+  </body>
+</html>
